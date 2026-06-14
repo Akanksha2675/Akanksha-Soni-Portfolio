@@ -3,7 +3,6 @@ import { Mail, Phone, MapPin, Linkedin, Github, Send, Loader2, CheckCircle, Aler
 
 const CONTACT_INFO = [
   { icon: Mail, label: 'Email', value: 'soniakanksha267@gmail.com', href: 'mailto:soniakanksha267@gmail.com' },
-  { icon: Phone, label: 'Phone', value: '+91 79877 11804', href: 'tel:+917987711804' },
   { icon: MapPin, label: 'Location', value: 'Bilaspur, Chhattisgarh, India', href: undefined },
   { icon: Linkedin, label: 'LinkedIn', value: 'akanksha-soni-351002289', href: 'https://www.linkedin.com/in/akanksha-soni-351002289' },
   { icon: Github, label: 'GitHub', value: 'Akanksha2675', href: 'https://github.com/Akanksha2675' },

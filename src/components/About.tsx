@@ -41,7 +41,8 @@ export default function About() {
           <div className="md:col-span-2 flex justify-center reveal">
             <div className="glow-card p-8 animate-float inline-flex items-center justify-center w-64 h-64">
               <span className="font-display text-8xl font-bold gradient-text select-none">
-                Akiverse
+                Aki
+                verse
               </span>
             </div>
           </div>

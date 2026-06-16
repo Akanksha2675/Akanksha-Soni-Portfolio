@@ -10,33 +10,44 @@ const ROLES = [
 
 function useTypingAnimation(roles: string[]) {
   const [text, setText] = useState('');
-  const [roleIndex, setRoleIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
+  const charIndexRef = useRef(0);
+  const stateRef = useRef({ roleIndex: 0, isDeleting: false });
 
   useEffect(() => {
-    const current = roles[roleIndex];
+    const state = stateRef.current;
+    let timeoutId: ReturnType<typeof setTimeout>;
 
-    const handleTyping = () => {
-      if (!isDeleting) {
-        setText(current.slice(0, text.length + 1));
-        if (text.length + 1 === current.length) {
-          timeoutRef.current = setTimeout(() => setIsDeleting(true), 2000);
+    function tick() {
+      const current = roles[state.roleIndex];
+
+      if (!state.isDeleting) {
+        charIndexRef.current += 1;
+        const idx = charIndexRef.current;
+        setText(current.slice(0, idx));
+        if (idx === current.length) {
+          timeoutId = setTimeout(() => {
+            state.isDeleting = true;
+            tick();
+          }, 1800);
           return;
         }
       } else {
-        setText(current.slice(0, text.length - 1));
-        if (text.length === 0) {
-          setIsDeleting(false);
-          setRoleIndex((roleIndex + 1) % roles.length);
-          return;
+        charIndexRef.current -= 1;
+        const idx = charIndexRef.current;
+        setText(current.slice(0, idx));
+        if (idx === 0) {
+          state.isDeleting = false;
+          state.roleIndex = (state.roleIndex + 1) % roles.length;
         }
       }
-    };
 
-    timeoutRef.current = setTimeout(handleTyping, isDeleting ? 50 : 100);
-    return () => clearTimeout(timeoutRef.current);
-  }, [text, isDeleting, roleIndex, roles]);
+      timeoutId = setTimeout(tick, state.isDeleting ? 40 : 90);
+    }
+
+    timeoutId = setTimeout(tick, 90);
+    return () => clearTimeout(timeoutId);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return text;
 }

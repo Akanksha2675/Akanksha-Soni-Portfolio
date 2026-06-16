@@ -85,9 +85,9 @@ export default function Hero() {
                 View My Work
               </a>
               <a
-                href="#"
+                href="/AKANKSHA_SONI__RESUME.pdf"
+                download="Akanksha_Soni_Resume.pdf"
                 className="btn-outline inline-flex items-center gap-2"
-                onClick={e => e.preventDefault()}
               >
                 <Download size={18} />
                 Download Resume

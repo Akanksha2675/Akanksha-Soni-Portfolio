@@ -47,7 +47,7 @@ export default function Navbar() {
           className="font-display font-bold text-2xl gradient-text"
           onClick={() => setIsOpen(false)}
         >
-          Akiverse
+          Ak
         </a>
 
         {/* Desktop nav */}
